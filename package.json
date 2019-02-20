@@ -1,0 +1,16 @@
+{
+  "name": "inline-scripts",
+  "version": "0.0.1",
+  "description": "Inline <script> tags in HTML files.",
+  "main": "index.js",
+  "scripts": {},
+  "bin": "src/index.js",
+  "keywords": [
+    "html",
+    "inline",
+    "js",
+    "script"
+  ],
+  "author": "mahhov1",
+  "license": "ISC"
+}
