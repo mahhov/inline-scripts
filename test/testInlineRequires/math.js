@@ -1,4 +1,4 @@
-let mathHelper = require('./mathHelper');
+let mathHelper = require('./nested/mathHelper');
 module.exports = {
 	magic: a => mathHelper.add(mathHelper.double(mathHelper.double(a)), 10),
 };
