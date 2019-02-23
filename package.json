@@ -4,7 +4,8 @@
   "description": "Inline <script> tags in HTML files.",
   "scripts": {},
   "bin": {
-    "inline-scripts": "src/inlineScripts.js"
+    "inline-scripts": "src/inlineScripts.js",
+    "inline-requires": "src/inlineRequires.js"
   },
   "keywords": [
     "html",
