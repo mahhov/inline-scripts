@@ -2,7 +2,9 @@
   "name": "inline-scripts",
   "version": "0.0.1",
   "description": "Inline <script> tags in HTML files.",
-  "scripts": {},
+  "scripts": {
+    "test-inline-requirese": "inline-requires test/testInlineRequires/main.js temp.js; cat temp.js"
+  },
   "bin": {
     "inline-scripts": "src/inlineScripts.js",
     "inline-requires": "src/inlineRequires.js"

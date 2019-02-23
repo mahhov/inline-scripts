@@ -4,6 +4,13 @@ let dependencies = {
 		console.log('magic of 10 is 50?', math.magic(10));
 	},
 
+	'math': (require, module) => {
+		let mathHelper = require('./nested/mathHelper');
+		module.exports = {
+			magic: a => mathHelper.add(mathHelper.double(mathHelper.double(a)), 10),
+		};
+	},
+
 	'nested,mathHelper': (require, module) => {
 		module.exports = {
 			square: a => a * a,
@@ -11,14 +18,7 @@ let dependencies = {
 			double: a => a * 2,
 			increment: a => a++,
 		};
-	},
-
-	'math': (require, module) => {
-		let mathHelper = require('./nested/mathHelper');
-		module.exports = {
-			magic: a => mathHelper.add(mathHelper.double(mathHelper.double(a)), 10),
-		};
-	},
+	}
 };
 
 let fakeRequire = (currentPath, dependencyPath) => {
