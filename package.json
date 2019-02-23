@@ -2,9 +2,10 @@
   "name": "inline-scripts",
   "version": "0.0.1",
   "description": "Inline <script> tags in HTML files.",
-  "main": "index.js",
   "scripts": {},
-  "bin": "src/index.js",
+  "bin": {
+    "inline-scripts": "src/inlineScripts.js"
+  },
   "keywords": [
     "html",
     "inline",
