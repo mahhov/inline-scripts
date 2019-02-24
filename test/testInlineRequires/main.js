@@ -1,2 +1,2 @@
-let math = require('./math');
-console.log('magic of 10 is 50?', math.magic(10));
+let math = require('./mathHelper');
+console.log('10 ^ 2 =', math.square(10));

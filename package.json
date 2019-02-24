@@ -1,12 +1,12 @@
 {
   "name": "inline-scripts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Inline <script> tags in HTML files.",
   "scripts": {
     "test-inline-requirese": "inline-requires test/testInlineRequires/main.js temp.js; cat temp.js"
   },
   "bin": {
-    "inline-scripts": "src/inlineScripts.js",
+    "inline-script-tags": "src/inlineScriptTags.js",
     "inline-requires": "src/inlineRequires.js"
   },
   "keywords": [
