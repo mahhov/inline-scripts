@@ -108,3 +108,13 @@ console.log('server URL is' + process.env.SERVER_URL);
 // out/main.js
 console.log('server URL is' + 'https://api.github.com');
 ```
+
+# Note on parameters
+
+All 3 scripts usually take 2 parameters: the input and output files. 
+
+`$ inline-scripts src/index.html out/index.html .`
+
+For convenience, if the 2nd parameter is `.`, the output will replace the input file.
+
+`$ inline-scripts out/index.html .`
