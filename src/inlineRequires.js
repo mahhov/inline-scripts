@@ -2,6 +2,7 @@
 
 const fs = require('fs').promises;
 const path = require('path');
+const wrapper = require('./wrapper');
 
 let getDependencies = async jsPath => {
 	const requireRegex = /require\([`'"]([\w\/.]*)[`'"]\)/;
@@ -67,15 +68,4 @@ let inlineJsRequires = async jsPath => {
 	return dependenciesOut + fakeRequireOut + startOut;
 };
 
-let main = async () => {
-	if (process.argv.length !== 4)
-		return console.error('Expected 2 parameters: entry JS path and write JS path.');
-	let jsPath = process.argv[2];
-	let jsOutPath = process.argv[3];
-
-	let inlinedJs = await inlineJsRequires(jsPath);
-	await fs.mkdir(path.dirname(jsOutPath), {recursive: true});
-	fs.writeFile(jsOutPath, inlinedJs);
-};
-
-main();
+wrapper(inlineJsRequires);

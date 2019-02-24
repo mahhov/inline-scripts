@@ -2,6 +2,7 @@
 
 const fs = require('fs').promises;
 const path = require('path');
+const wrapper = require('./wrapper');
 
 let inlineHtmlScripts = async htmlPath => {
 	const scriptTagRegex = /<script src="([\w.\/]+)"><\/script>/;
@@ -17,15 +18,4 @@ let inlineHtmlScripts = async htmlPath => {
 			`<script>${scripts[i++]}</script>`));
 };
 
-let main = async () => {
-	if (process.argv.length !== 4)
-		return console.error('Expected 2 parameters: entry HTML path and write HTML path.');
-	let htmlPath = process.argv[2];
-	let htmlOutPath = process.argv[3];
-
-	let inlinedHtml = await inlineHtmlScripts(htmlPath);
-	await fs.mkdir(path.dirname(htmlOutPath), {recursive: true});
-	fs.writeFile(htmlOutPath, inlinedHtml);
-};
-
-main();
+wrapper(inlineHtmlScripts);
