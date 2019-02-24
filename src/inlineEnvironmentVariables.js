@@ -11,7 +11,7 @@ let inlineJsEnvVars = async jsPath => {
 		.match(new RegExp(envVarRegex, 'g'))
 		.map(envVarRef => envVarRef.match(envVarRegex)[1])
 		.map(envVarName => process.env[envVarName])
-		.map(envVarValue => `'${envVarValue.replace("'", "\\'")}'`);
+		.map(envVarValue => envVarValue ? `'${envVarValue.replace("'", "\\'")}'` : '');
 	let i = 0;
 	return file.replace(new RegExp(envVarRegex, 'g'), () => envVarValues[i++]);
 };
