@@ -3,11 +3,13 @@
   "version": "0.0.2",
   "description": "Inline <script> tags in HTML files.",
   "scripts": {
-    "test-inline-requirese": "inline-requires test/testInlineRequires/main.js temp.js; cat temp.js"
+    "test-inline-requires": "inline-requires test/testInlineRequires/main.js temp.js; cat temp.js",
+    "test-inline-environment-variables": "PORT=3000 inline-environment-variables test/testInlineEnvironmentVariables/main.js temp.js; cat temp.js"
   },
   "bin": {
     "inline-script-tags": "src/inlineScriptTags.js",
-    "inline-requires": "src/inlineRequires.js"
+    "inline-requires": "src/inlineRequires.js",
+    "inline-environment-variables": "src/inlineEnvironmentVariables.js"
   },
   "keywords": [
     "html",

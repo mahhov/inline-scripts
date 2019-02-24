@@ -1,9 +1,12 @@
 # Inline Scripts
 
-`inline-script-tags` bundles files referenced by `<script>` tags into an output HTML.
+This package contains scripts that help build client code:
 
-`inline-requires` bundles `require` dependencies inside a single output JS.
+- `inline-script-tags` inlines files referenced by `<script>` tags into an output HTML.
 
+- `inline-requires` bundles `require` dependencies inside a single output JS.
+
+- `inline-environment-variables` replaces references to `process.env.<envVarName>` with their values in a JS file.
 
 # Installation
 
@@ -89,4 +92,19 @@ let fakeRequire = (currentPath, dependencyPath) => {
 };
 
 dependencies['main'](fakeRequire.bind(null, ['main']));
+```
+
+## `inline-environment-variables`
+
+
+```js
+// src/main.js
+console.log('server URL is' + process.env.SERVER_URL);
+```
+
+`$ inline-environment-variables src/main.js out/main.js`
+
+```js
+// out/main.js
+console.log('server URL is' + 'https://api.github.com');
 ```
