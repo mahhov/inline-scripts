@@ -12,7 +12,7 @@ This package contains scripts that help build client code:
 
 `npm i --save-dev inline-scripts`
 
-# Example
+# CLI Examples
 
 ## `inline-script-tags`
 
@@ -109,7 +109,7 @@ console.log('server URL is' + process.env.SERVER_URL);
 console.log('server URL is' + 'https://api.github.com');
 ```
 
-# Note on parameters
+## Note on parameters
 
 All 3 scripts usually take 2 parameters: the input and output files. 
 
@@ -118,3 +118,9 @@ All 3 scripts usually take 2 parameters: the input and output files.
 For convenience, if the 2nd parameter is `.`, the output will replace the input file.
 
 `$ inline-scripts out/index.html .`
+
+# JS API
+
+`const {inlineEnvironmentVariables, inlineRequires, inlineScriptTags} = require(inline-scripts);`
+
+Each of the functions take a string path to the entry file as their single parameter and return a proimse that resolves to the computed output.
