@@ -1,5 +1,5 @@
-let inlineEnvironmentVariables = require('./inlineEnvironmentVariables');
-let inlineRequires = require('./inlineRequires');
 let inlineScriptTags = require('./inlineScriptTags');
+let inlineRequires = require('./inlineRequires');
+let inlineEnvironmentVariables = require('./inlineEnvironmentVariables');
 
-module.exports = {inlineEnvironmentVariables, inlineRequires, inlineScriptTags};
+module.exports = {inlineScriptTags, inlineRequires, inlineEnvironmentVariables};
