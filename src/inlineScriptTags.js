@@ -2,7 +2,6 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const wrapper = require('./wrapper');
 
 let inlineHtmlScripts = async htmlPath => {
 	const scriptTagRegex = /<script src="([\w.\/]+)"><\/script>/;
@@ -18,4 +17,4 @@ let inlineHtmlScripts = async htmlPath => {
 			`<script>${scripts[i++]}</script>`));
 };
 
-wrapper(inlineHtmlScripts);
+module.exports = inlineHtmlScripts;

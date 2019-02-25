@@ -2,7 +2,6 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const wrapper = require('./wrapper');
 
 let getDependencies = async jsPath => {
 	const requireRegex = /require\([`'"]([\w\/.]*)[`'"]\)/;
@@ -68,4 +67,4 @@ let inlineJsRequires = async jsPath => {
 	return dependenciesOut + fakeRequireOut + startOut;
 };
 
-wrapper(inlineJsRequires);
+module.exports = inlineJsRequires;

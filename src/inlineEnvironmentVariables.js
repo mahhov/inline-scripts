@@ -1,8 +1,5 @@
-#!/usr/bin/env node
-
 const fs = require('fs').promises;
 const path = require('path');
-const wrapper = require('./wrapper');
 
 let inlineJsEnvVars = async jsPath => {
 	let file = await fs.readFile(jsPath, 'utf8');
@@ -16,4 +13,4 @@ let inlineJsEnvVars = async jsPath => {
 	return file.replace(new RegExp(envVarRegex, 'g'), () => envVarValues[i++]);
 };
 
-wrapper(inlineJsEnvVars);
+module.exports = inlineJsEnvVars;
