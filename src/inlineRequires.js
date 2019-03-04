@@ -43,7 +43,7 @@ let inlineJsRequires = async jsPath => {
 	let dependenciesOut = `let dependencies = {${dependenciesOutInner}};`;
 
 	let fakeRequire = (currentPath, dependencyPath) => {
-		currentPath = currentPath.split(0, -1);
+		currentPath = currentPath.slice(0, -1);
 		dependencyPath
 			.replace(/.js$/, '')
 			.split('/')
