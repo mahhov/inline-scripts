@@ -1,6 +1,6 @@
 {
   "name": "inline-scripts",
-  "version": "1.4.1",
+  "version": "1.4.5",
   "description": "Inline <script> tags in HTML files.",
   "main": "src/index",
   "scripts": {
