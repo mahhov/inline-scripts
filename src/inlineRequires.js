@@ -24,19 +24,29 @@ let getDependencies = async jsPath => {
 				.map(path => path.match(/\.\w*$/) ? path : path + '.js')
 				.map(pathI => path.resolve(path.dirname(curPath), pathI))
 				.forEach(path => pending.push(path));
-		let pathString = path
+		let pathArray = path
 			.relative(path.dirname(jsPath), curPath)
-			.split(path.sep)
-			.toString()
-			.replace(/.js$/, '');
-		dependencies.push({pathString, file});
+			.split(path.sep);
+		dependencies.push({pathArray, file});
 	}
 
 	return dependencies;
 };
 
+let setDependencyPathStrings = (jsPath, dependencies) => {
+	let maxUp = Math.max(...dependencies
+		.map(({pathArray}) => pathArray.filter(a => a === '..').length));
+	let rootPath = path.posix.join(...path.dirname(jsPath).split(path.sep).slice(-maxUp));
+	dependencies.forEach(dependency =>
+		dependency.pathString = path.posix.join(rootPath, ...dependency.pathArray)
+        .replace(/.js$/, ''));
+  return rootPath;
+};
+
 let inlineJsRequires = async jsPath => {
 	let dependencies = await getDependencies(jsPath);
+	let rootPath = setDependencyPathStrings(jsPath, dependencies);
+
 	let dependenciesOutInner = dependencies
 		.map(({pathString, file}) => `'${pathString}': (require, module) => {${file}}`)
 		.join();
@@ -55,13 +65,13 @@ let inlineJsRequires = async jsPath => {
 					currentPath.push(pathFragment);
 			});
 		let module = {};
-		dependencies[currentPath.toString()](fakeRequire.bind(null, currentPath), module);
+		dependencies[currentPath.join('/')](fakeRequire.bind(null, currentPath), module);
 		return module.exports;
 	};
 	let fakeRequireOut = `let fakeRequire = ${fakeRequire.toString()};`;
 
-	let start = path.parse(jsPath).name;
-	let startOut = `dependencies['${start}'](fakeRequire.bind(null, ['${start}']));`;
+	let start = [rootPath, path.parse(jsPath).name];
+	let startOut = `dependencies['${path.posix.join(...start)}'](fakeRequire.bind(null, [${start.map(a => `'${a}'`)}]));`;
 
 	return dependenciesOut + fakeRequireOut + startOut;
 };

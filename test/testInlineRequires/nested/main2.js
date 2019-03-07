@@ -1,2 +1,2 @@
-let math = require('../mathHelper');
-console.log('10 ^ 2 =', math.square(10));
+let {x} = require('../side/sideHelper');
+console.log('10 ^ 2 =', x(10));
