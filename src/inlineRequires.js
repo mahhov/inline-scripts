@@ -48,7 +48,12 @@ let inlineJsRequires = async jsPath => {
 			.replace(/.js$/, '')
 			.split('/')
 			.filter(a => a !== '.')
-			.forEach(pathFragment => currentPath.push(pathFragment));
+			.forEach(pathFragment => {
+				if (pathFragment === '..' && currentPath[currentPath.length - 1] !== '..')
+					currentPath.pop();
+				else
+					currentPath.push(pathFragment);
+			});
 		let module = {};
 		dependencies[currentPath.toString()](fakeRequire.bind(null, currentPath), module);
 		return module.exports;
