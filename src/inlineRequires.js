@@ -39,8 +39,8 @@ let setDependencyPathStrings = (jsPath, dependencies) => {
 	let rootPath = path.posix.join(...path.dirname(jsPath).split(path.sep).slice(-maxUp));
 	dependencies.forEach(dependency =>
 		dependency.pathString = path.posix.join(rootPath, ...dependency.pathArray)
-        .replace(/.js$/, ''));
-  return rootPath;
+			.replace(/.js$/, ''));
+	return rootPath;
 };
 
 let inlineJsRequires = async jsPath => {
