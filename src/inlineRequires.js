@@ -49,7 +49,7 @@ let inlineJsRequires = async jsPath => {
 			.split('/')
 			.filter(a => a !== '.')
 			.forEach(pathFragment => {
-				if (pathFragment === '..' && currentPath[currentPath.length - 1] !== '..')
+				if (pathFragment === '..' && currentPath.length && currentPath[currentPath.length - 1] !== '..')
 					currentPath.pop();
 				else
 					currentPath.push(pathFragment);
