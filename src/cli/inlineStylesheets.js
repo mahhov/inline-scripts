@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
 const wrapper = require('./wrapper');
-const script = require('../inlineScriptTags');
+const script = require('../inlineStylesheets');
 
 wrapper(script);

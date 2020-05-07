@@ -5,6 +5,7 @@
   "main": "src/index",
   "scripts": {
     "test-inline-script-tags": "inline-script-tags test/testInlineScriptTags/index.html index.html; cat index.html",
+    "test-inline-stylesheets": "inline-stylesheets test/testInlineStylesheets/index.html index.html; cat index.html",
     "test-inline-requires": "inline-requires test/testInlineRequires/main.js temp.js; cat temp.js; echo '\n'; node temp.js",
     "test-inline-requires-2": "inline-requires test/testInlineRequires/nested/main2.js temp.js; cat temp.js; echo '\n'; node temp.js",
     "test-inline-environment-variables": "PORT=3000 inline-environment-variables test/testInlineEnvironmentVariables/main.js temp.js; cat temp.js",
@@ -12,6 +13,7 @@
   },
   "bin": {
     "inline-script-tags": "src/cli/inlineScriptTags.js",
+    "inline-stylesheets": "src/cli/inlineStylesheets.js",
     "inline-requires": "src/cli/inlineRequires.js",
     "inline-environment-variables": "src/cli/inlineEnvironmentVariables.js"
   },
