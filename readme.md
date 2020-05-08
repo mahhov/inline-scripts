@@ -57,7 +57,9 @@ body {
 ```html
 <!-- out/index.html -->
 <p>Welcome</p>
-<style>body { color: red; }</style>
+<style>body {
+	color: red;
+}</style>
 ```
 
 ## `inline-requires`
