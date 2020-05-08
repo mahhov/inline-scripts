@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 const path = require('path');
 
 let getDependencies = async jsPath => {
-	const requireRegex = /require\([`'"]([\w\/.]*)[`'"]\)/;
+	const requireRegex = /require\([`'"]([\w\-\/.]*)[`'"]\)/;
 
 	let added = [];
 	let pending = [path.resolve(jsPath)];
