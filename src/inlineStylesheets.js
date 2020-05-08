@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 const path = require('path');
 
 let inlineHtmlStyles = async htmlPath => {
-	const linkTagRegex = /<link.+href="([\w.\-\/]+)css".*>/;
+	const linkTagRegex = /<link (?:.* )?rel="stylesheet"(?:.* )?href="([\w.\-\/]+)".*>|<link (?:.* )?href="([\w.\-\/]+)"(?:.* )?rel="stylesheet".*>/;
 	let html = await fs.readFile(htmlPath, 'utf8');
 	let stylesheetPromises = html
 		.match(new RegExp(linkTagRegex, 'g'))
