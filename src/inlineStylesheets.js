@@ -8,8 +8,11 @@ let inlineHtmlStyles = async htmlPath => {
 	let html = await fs.readFile(htmlPath, 'utf8');
 	let stylesheetPromises = html
 		.match(new RegExp(linkTagRegex, 'g'))
-		.map(linkTag => linkTag.match(linkTagRegex)[1])
-		.map(relPath => path.resolve(path.dirname(htmlPath), relPath + 'css'))
+		.map(linkTag => {
+			let m = linkTag.match(linkTagRegex);
+			return m[1] || m[2];
+		})
+		.map(relPath => path.resolve(path.dirname(htmlPath), relPath))
 		.map(stylesheetPath => fs.readFile(stylesheetPath, 'utf8'));
 	let i = 0;
 	return Promise.all(stylesheetPromises).then(stylesheets =>
