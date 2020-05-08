@@ -4,6 +4,8 @@ This package contains scripts that help build client code:
 
 - `inline-script-tags` inlines files referenced by `<script>` tags into an output HTML.
 
+- `inline-stylesheets` inlines stylesheets referenced by `<link>` tags into an output HTML.
+
 - `inline-requires` bundles `require` dependencies inside a single output JS.
 
 - `inline-environment-variables` replaces references to `process.env.<envVarName>` with their values in a JS file.
@@ -28,11 +30,36 @@ console.log('Welcome');
 ```
 
 `$ inline-scripts src/index.html out/index.html`
- 
+
 ```html
 <!-- out/index.html -->
 <p>Welcome</p>
 <script>console.log('Welcome');</script>
+```
+
+## `inline-stylesheets`
+
+```html
+<!-- src/index.html -->
+<p>Welcome</p>
+<link rel="stylesheet" href="style.css">
+```
+
+```css
+/* src/style.css */
+body {
+	color: red;
+}
+```
+
+`$ inline-stylesheets src/index.html out/index.html`
+
+```html
+<!-- out/index.html -->
+<p>Welcome</p>
+<style>body {
+	color: red;
+}</style>
 ```
 
 ## `inline-requires`
@@ -55,7 +82,7 @@ module.exports = {
 ```
 
 `$ inline-requires src/main.js out/main.js`
- 
+
 ```js
 // out/main.js
 let dependencies = {
@@ -111,7 +138,7 @@ console.log('server URL is' + 'https://api.github.com');
 
 ## Note on parameters
 
-All 3 scripts usually take 2 parameters: the input and output files. 
+All scripts usually take 2 parameters: the input and output files.
 
 `$ inline-scripts src/index.html out/index.html .`
 
@@ -123,4 +150,4 @@ For convenience, if the 2nd parameter is `.`, the output will replace the input 
 
 `const {inlineEnvironmentVariables, inlineRequires, inlineScriptTags} = require(inline-scripts);`
 
-Each of the functions take a string path to the entry file as their single parameter and return a proimse that resolves to the computed output.
+Each of the functions take a string path to the entry file as their single parameter and return a promise that resolves to the computed output.

@@ -1,0 +1,20 @@
+Link tags without `rel="stylesheet"` should not be replaced.
+
+Not a stylesheet
+<link href="/author.html" rel="author">
+
+Missing rel attribute
+<link href="myStyle.css">
+
+Incorrect syntax
+<linkrel="stylesheet" href="myStyle.css">
+
+
+Link tags with `rel="stylesheet"` should be replaced.
+
+<link href="myStyle.css" rel="stylesheet">
+
+Space between attributes is optional
+<link rel="stylesheet"href="myStyle.css">
+
+<link href="nested/myNestedStylesheet.css" rel="stylesheet" />
