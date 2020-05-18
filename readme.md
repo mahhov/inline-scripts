@@ -62,6 +62,22 @@ body {
 }</style>
 ```
 
+## `inline-images`
+
+```html
+<!-- src/index.html -->
+<p>Welcome</p>
+<img src="red_dot.png">
+```
+
+`$ inline-images src/index.html out/index.html`
+
+```html
+<!-- out/index.html -->
+<p>Welcome</p>
+<img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==">
+```
+
 ## `inline-requires`
 
 ```js
