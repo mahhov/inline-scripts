@@ -147,7 +147,7 @@ let fakeRequire = (currentPath, dependencyPath) => {
 dependencies["main"](fakeRequire.bind(null, ["main"]));
 ```
 
-### `inline-environment-variables`
+### inline-environment-variables
 
 ```js
 // src/main.js
@@ -165,11 +165,11 @@ console.log("server URL is" + "https://api.github.com");
 
 All scripts usually take 2 parameters: the input and output files.
 
-`$ inline-[script_type] src/index.html out/index.html .`
+`$ inline-[script_type] src/index.html out/index.html`
 
 For convenience, if the 2nd parameter is `.`, the output will replace the input file.
 
-`$ inline-[script_type] out/index.html .`
+`$ inline-[script_type] src/index.html .`
 
 ---
 
