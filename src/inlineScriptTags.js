@@ -17,7 +17,7 @@ let inlineHtmlScripts = async htmlPath => {
 	let i = 0;
 	return Promise.all(scriptPromises).then(scripts =>
 		html.replace(new RegExp(scriptTagRegex, 'g'), () =>
-			`<script>${scripts[i++]}</script>`));
+			`<script>${scripts[i++].replace('</script>', '<\\/script>')}</script>`));
 };
 
 module.exports = inlineHtmlScripts;
