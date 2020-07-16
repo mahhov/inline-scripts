@@ -7,8 +7,8 @@ let inlineHtmlScripts = async htmlPath => {
 	const scriptTagRegex = /<script .*src="([\w.\-\/]+)".*><\/script>/;
 	let html = await fs.readFile(htmlPath, 'utf8');
 
-        let matches = html.match(new RegExp(scriptTagRegex, 'g'));
-        if (matches == null) return html;
+	let matches = html.match(new RegExp(scriptTagRegex, 'g'));
+	if (matches == null) return html;
 
 	let scriptPromises = matches
 		.map(scriptTag => scriptTag.match(scriptTagRegex)[1])
