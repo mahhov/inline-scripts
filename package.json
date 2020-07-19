@@ -1,15 +1,15 @@
 {
   "name": "inline-scripts",
-  "version": "1.7.1",
+  "version": "1.7.0",
   "description": "Inline <script> tags in HTML files.",
   "main": "src/index",
   "scripts": {
-    "test-inline-script-tags": "node src/cli/inlineScriptTags.js test/testInlineScriptTags/index.html index.html; cat index.html",
-    "test-inline-stylesheets": "node src/cli/inlineStylesheets.js test/testInlineStylesheets/index.html index.html; cat index.html",
-    "test-inline-images": "node src/cli/inlineImages.js test/testInlineImages/index.html index.html; cat index.html",
-    "test-inline-requires": "node src/cli/inlineRequires.js test/testInlineRequires/main.js temp.js; cat temp.js; echo '\n'; node temp.js",
-    "test-inline-requires-2": "node src/cli/inlineRequires.js test/testInlineRequires/nested/main2.js temp.js; cat temp.js; echo '\n'; node temp.js",
-    "test-inline-environment-variables": "PORT=3000 node src/cli/inlineEnvironmentVariables.js test/testInlineEnvironmentVariables/main.js temp.js; cat temp.js",
+    "test-inline-script-tags": "inline-script-tags test/testInlineScriptTags/index.html index.html; cat index.html",
+    "test-inline-stylesheets": "inline-stylesheets test/testInlineStylesheets/index.html index.html; cat index.html",
+    "test-inline-images": "inline-images test/testInlineImages/index.html index.html; cat index.html",
+    "test-inline-requires": "inline-requires test/testInlineRequires/main.js temp.js; cat temp.js; echo '\n'; node temp.js",
+    "test-inline-requires-2": "inline-requires test/testInlineRequires/nested/main2.js temp.js; cat temp.js; echo '\n'; node temp.js",
+    "test-inline-environment-variables": "PORT=3000 inline-environment-variables test/testInlineEnvironmentVariables/main.js temp.js; cat temp.js",
     "postversion": "git push && npm publish"
   },
   "bin": {
