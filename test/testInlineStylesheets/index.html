@@ -9,12 +9,17 @@ Missing rel attribute
 Incorrect syntax
 <linkrel="stylesheet" href="myStyle.css">
 
-
 Link tags with `rel="stylesheet"` should be replaced.
-
 <link href="myStyle.css" rel="stylesheet">
+
+Should also work with `rel=stylesheet` (no double quotes)
+<link href=myStyle.css rel=stylesheet>
 
 Space between attributes is optional
 <link rel="stylesheet"href="myStyle.css">
 
+Nesting
 <link href="nested/myNestedStylesheet.css" rel="stylesheet" />
+
+Leading slashes are removed
+<link href="/nested/myNestedStylesheet.css" rel="stylesheet">
