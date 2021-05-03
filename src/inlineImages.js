@@ -10,7 +10,7 @@ let inlineImages = async htmlPath => {
 	if (!matches)
 		return html;
 	let imgPromises = matches
-		.map(imgTag => imgTag.match(imgTagRegex)[2])
+		.map(imgTag => imgTag.match(imgTagRegex)[2].replace(/^\/+/, ''))
 		.map(relImgPath => path.resolve(path.dirname(htmlPath), relImgPath))
 		.map(imgPath => fs.readFile(imgPath));
 	let i = 0;

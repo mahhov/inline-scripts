@@ -10,7 +10,7 @@ let inlineHtmlScripts = async htmlPath => {
 	if (!matches)
 		return html;
 	let scriptPromises = matches
-		.map(scriptTag => scriptTag.match(scriptTagRegex)[1])
+		.map(scriptTag => scriptTag.match(scriptTagRegex)[1].replace(/^\/+/, ''))
 		.map(relScriptPath => path.resolve(path.dirname(htmlPath), relScriptPath))
 		.map(scriptPath => fs.readFile(scriptPath, 'utf8'));
 	let i = 0;
