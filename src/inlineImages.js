@@ -4,13 +4,13 @@ const fs = require('fs').promises;
 const path = require('path');
 
 let inlineImages = async htmlPath => {
-	const imgTagRegex = /<img (.* )?src="([\w.\-\/]+)"(.*)>/;
+	const imgTagRegex = /<img (.* )?src="?([\w.\-\/]+)"?(.*)>/;
 	let html = await fs.readFile(htmlPath, 'utf8');
 	let matches = html.match(new RegExp(imgTagRegex, 'g'));
 	if (!matches)
 		return html;
 	let imgPromises = matches
-		.map(imgTag => imgTag.match(imgTagRegex)[2])
+		.map(imgTag => imgTag.match(imgTagRegex)[2].replace(/^\/+/, ''))
 		.map(relImgPath => path.resolve(path.dirname(htmlPath), relImgPath))
 		.map(imgPath => fs.readFile(imgPath));
 	let i = 0;
