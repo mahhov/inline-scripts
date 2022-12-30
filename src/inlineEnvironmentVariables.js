@@ -1,8 +1,10 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-let inlineJsEnvVars = async jsPath => {
-	let file = await fs.readFile(jsPath, 'utf8');
+let inlineJsEnvVars = async options => {
+	let jsString, jsPath = (typeof options === 'string') ? options : '';
+	if (typeof options === 'object') ({ jsString, jsPath } = options);
+	const file = jsString || await fs.readFile(jsPath, 'utf8');
 	const envVarRegex = /process\.env\.(\w+)/;
 	let envVarMatches = file.match(new RegExp(envVarRegex, 'g'));
 	if (!envVarMatches)

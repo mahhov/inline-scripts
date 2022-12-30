@@ -3,9 +3,11 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-let inlineHtmlScripts = async htmlPath => {
+let inlineHtmlScripts = async options => {
 	const scriptTagRegex = /<script (?:.* )?src="([\w.\-\/]+)".*><\/script>/;
-	let html = await fs.readFile(htmlPath, 'utf8');
+	let htmlString, htmlPath = (typeof options === 'string') ? options : '';
+	if (typeof options === 'object') ({ htmlString, htmlPath } = options);
+	const html = htmlString || await fs.readFile(htmlPath, 'utf8');
 	let matches = html.match(new RegExp(scriptTagRegex, 'g'));
 	if (!matches)
 		return html;
