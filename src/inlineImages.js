@@ -3,9 +3,11 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-let inlineImages = async htmlPath => {
+let inlineImages = async options => {
 	const imgTagRegex = /<img (.* )?src="([\w.\-\/]+)"(.*)>/;
-	let html = await fs.readFile(htmlPath, 'utf8');
+	let htmlString, htmlPath = (typeof options === 'string') ? options : '';
+	if (typeof options === 'object') ({ htmlString, htmlPath } = options);
+	const html = htmlString || await fs.readFile(htmlPath, 'utf8');
 	let matches = html.match(new RegExp(imgTagRegex, 'g'));
 	if (!matches)
 		return html;

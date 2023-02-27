@@ -164,6 +164,29 @@ For convenience, if the 2nd parameter is `.`, the output will replace the input 
 
 # JS API
 
-`const {inlineEnvironmentVariables, inlineRequires, inlineScriptTags} = require(inline-scripts);`
+`const {inlineEnvironmentVariables, inlineRequires, inlineScriptTags, inlineStylesheets, inlineImages} = require('inline-scripts');`
 
-Each of the functions take a string path to the entry file as their single parameter and return a promise that resolves to the computed output.
+Each of the functions take a string path to the entry file as their single parameter and returns a promise that resolves to the computed output.
+
+To make it easy to perform multiple operations you can pass the output of each to the input for the next operation. Rather than pass a string path to `inlineScriptTag`, `inlineStylesheets` and `inlineImage` you can pass a hash with the file path and an html string. Both the path and string must be supplied. Rather than read the file it uses the supplied string as input. The path is required to resolve relative references to the css, js or image files.
+```js
+{ 
+	htmlPath: '/path-to-file.html',
+	htmlString: 'string-containing-html'
+}
+```
+`inlineEnvironmentVariables` also takes either a string with the file path or a hash with either a path or a string (if both are present then the string is used and the path is ignored):
+```js
+{ 
+	jsPath: '/path-to-file.js',
+	jsString: 'string-containing-js'
+}
+```
+An example of inlining scripts, stylesheets and images:
+```js
+inlineScriptTags('./index.html')
+.then (htmlString => inlineStylesheets({ htmlPath: './index.html', htmlString }))
+.then (htmlString => inlineImages({ htmlPath: './index.html', htmlString }))
+.then (htmlString => fs.writeFileSync('./dist/index.html', htmlString));
+
+```
